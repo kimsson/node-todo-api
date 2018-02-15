@@ -18,7 +18,10 @@ app.post('/todos', (req, res) => {
   })
 
   todo.save().then((doc) => {
-    res.send(doc);
+    res.send({
+      code: 'Todo added',
+      doc
+    });
   }, (e) => {
     res.status(400).send(e)
   })
@@ -26,8 +29,8 @@ app.post('/todos', (req, res) => {
 app.get('/todos', (req, res) => {
   Todo.find({}).then((todos) => {
     res.send({
+      code: 'Available todos',
       todos,
-      code: 'Status code'
     });
   }, (e) => {
     res.status(400).send(e);
@@ -60,7 +63,10 @@ app.delete('/todos/:id', (req, res) => {
     if(!todo){
       res.status(404).send();
     }
-    res.status(200).send(todo);
+    res.status(200).send({
+      code: 'Todo deleted',
+      todo
+    });
   }).catch((e) => {
     res.status(400).send();
   })
