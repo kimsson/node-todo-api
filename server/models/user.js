@@ -3,14 +3,7 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
-// {
-//   email: 'contact@kimsson.com',
-//   password: 'fafdadfkapfkmkclvma'
-//   tokens: [{
-//     access: 'auth',
-//     token: 'lfa,mföakfdkaöfmkladf'
-//   }]
-// }
+
 
 
 var UserSchema = new mongoose.Schema({
@@ -22,7 +15,7 @@ var UserSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: validator.isEmail,
-      message: '{VALUE} is not valid'
+      message: '{VALUE} is not valid email'
     }
   },
   password: {
@@ -68,7 +61,7 @@ UserSchema.statics.findByToken = function (token) {
   try {
     decoded = jwt.verify(token, 'abc123');
   } catch (e) {
-    console.log('Unable to verify token ', e);
+    return Promise.reject();
   }
 
   return User.findOne({

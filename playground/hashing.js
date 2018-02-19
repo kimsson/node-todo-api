@@ -6,13 +6,13 @@ const bcrypt = require('bcryptjs');
 
 var password = '123ost123ost!';
 
-bcrypt.genSalt(10, (err, salt) => {
-  bcrypt.hash(password, salt, (err, hash) => {
-    console.log(hash);
-  })
-})
+// bcrypt.genSalt(10, (err, salt) => {
+//   bcrypt.hash(password, salt, (err, hash) => {
+//     console.log(hash);
+//   })
+// })
 
-var hashedPassword = '$2a$10$A3BhVF0UM6PVWZQn7K0bl.Xs8gBC/SQtEjf00guKeXGuDesPDYHR6';
+var hashedPassword = '$2a$10$yrRhBwCvCU5fopsk7tDI6.RMC3v7VcHem1ryJd0mkQX6lXimncMhO';
 
 bcrypt.compare('abc123', hashedPassword, (err, res) => {
   console.log(res);
