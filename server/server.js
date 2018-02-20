@@ -36,8 +36,8 @@ app.get('/todos', authenticate, (req, res) => {
     _creator: req.user._id
   }).then((todos) => {
     res.send({
-      todos,
-    });
+      todos
+    })
   }, (e) => {
     res.status(400).send(e);
   })
@@ -132,7 +132,7 @@ app.post('/users', (req, res) => {
 app.get('/users', (req, res) => {
   User.find({}).then((users) => {
     res.send({
-      users,
+      users
     });
   }, (e) => {
     res.status(400).send(e);
