@@ -123,6 +123,16 @@ app.post('/users', (req, res) => {
   })
 })
 
+app.get('/users', (req, res) => {
+  User.find({}).then((users) => {
+    res.send({
+      code: 'Available users',
+      users,
+    });
+  }, (e) => {
+    res.status(400).send(e);
+  })
+});
 
 app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user)
@@ -134,12 +144,19 @@ app.post('/users/login', (req, res) => {
     user.generateAuthToken().then((token) => {
       res.header('x-auth', token).send(user);
     })
-    // res.status(200).send(_.pick(user, ['email']));
-    // res.status(200).send(user);
   }).catch((e) => {
     res.status(400).send(e);
   })
 })
+
+app.delete('/users/me/token', authenticate, (req, res) => {
+  req.user.removeToken(req.token).then(() => {
+    res.status(200).send();
+  }, () => {
+    res.status(400).send();
+  });
+});
+
 app.listen(port, () => {
   console.log(`Started port on ${port}`);
 })
