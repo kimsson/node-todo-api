@@ -165,6 +165,7 @@ describe('PATCH /todos/:id', () => {
 
     request(app)
       .patch(`/todos/${hexId}`)
+      .set('x-auth', users[1].tokens[0].token)
       .send({
         completed: true,
         text
@@ -183,6 +184,7 @@ describe('PATCH /todos/:id', () => {
 
     request(app)
       .patch(`/todos/${hexId}`)
+      .set('x-auth', users[1].tokens[0].token)
       .send({
         completed: false,
         text
