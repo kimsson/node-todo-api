@@ -22,12 +22,12 @@ var router = express.Router();
 var todoController = require('./routes/todoController');
 var userController = require('./routes/userController');
 
-app.use('/', router);
-app.use('/todos', authenticate);
-app.use('/todos', todoController);
+app.use('/api/', router);
+app.use('/api/todos', authenticate);
+app.use('/api/todos', todoController);
 
-app.use('/users/me', authenticate);
-app.use('/users', userController);
+app.use('/api/users/me', authenticate);
+app.use('/api/users', userController);
 
 // app.post('/todos', authenticate, (req, res) => {
 //   var todo = new Todo({
