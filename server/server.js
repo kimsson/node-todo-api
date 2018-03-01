@@ -21,6 +21,7 @@ var router = express.Router();
 
 var todoController = require('./routes/todoController');
 var userController = require('./routes/userController');
+var plantController = require('./routes/plantController');
 
 app.use('/api/', router);
 app.use('/api/todos', authenticate);
@@ -28,6 +29,8 @@ app.use('/api/todos', todoController);
 
 app.use('/api/users/me', authenticate);
 app.use('/api/users', userController);
+
+app.use('/api/plant', plantController);
 
 // app.post('/todos', authenticate, (req, res) => {
 //   var todo = new Todo({
