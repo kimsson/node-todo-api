@@ -8,9 +8,6 @@ module.exports = (function (){
   router.route('/sensors/:id').get(getSensorsById);
   // router.route('/switches').post(postSwitches);
 
-
-
-
   function getSensorsById(req, res) {
     Sensor.find({id:req.params.id}).then((doc) => {
       res.send({
@@ -29,20 +26,6 @@ module.exports = (function (){
     }, (e) => {
       res.status(400).send(e);
     });
-
   }
-
-  // function postSwitches(req, res) {
-  //
-  //   Switch.insertMany(req.body.switches).then((doc) => {
-  //     res.send({
-  //       doc
-  //     })
-  //   }, (e) => {
-  //     res.status(400).send(e);
-  //   });
-  //
-  // }
-
   return router;
 })()

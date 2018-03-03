@@ -10,7 +10,13 @@ var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 var {authenticate} = require('./middleware/authenticate')
+var cron = require('node-cron');
+var Log = require('./services/plantLogService');
 
+cron.schedule('0 */1 * * *', function () {
+  console.log('running Log task');
+  Log.log();
+})
 const port = process.env.PORT || 3000;
 
 var app = express();
