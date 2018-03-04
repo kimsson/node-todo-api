@@ -16,7 +16,7 @@ var cron = require('node-cron');
 var Log = require('./services/plantLogService');
 
 // Cron job
-cron.schedule('*/5 * * * *', function () {
+cron.schedule('*/60 * * * *', function () {
   console.log('running Log task');
   Log.log();
 })
