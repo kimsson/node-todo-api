@@ -6,7 +6,6 @@ module.exports = {
   DB: {},
 
   init: function () {
-    console.log('Firebase init', config.firebase)
     this.DB = firebase.initializeApp(config.firebase)
     // this.connect()
   },
