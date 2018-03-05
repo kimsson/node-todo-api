@@ -1,6 +1,7 @@
 const Firebase = require('../db/firebase');
 const _ = require('lodash');
-Firebase.init()
+Firebase.init();
+Firebase.connect();
 
 var { Sensor } = require('../models/sensor');
 

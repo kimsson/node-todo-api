@@ -13,7 +13,7 @@ module.exports = {
   connect: function () {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        console.log('User already signed in.')
+        console.log('User already signed in.', user.uid)
       } else {
         console.log('Sign in...')
         firebase.auth().signInAnonymously().catch(function (error) {
